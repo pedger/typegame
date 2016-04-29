@@ -14,6 +14,11 @@
     vm.creationDate = 1461923663095;
     vm.showToastr = showToastr;
 
+    vm.words = [  {w: 'original', class:''},
+                  {w: 'word', class:''},
+                  {w: 'experiment', class:''}
+                ];
+
     activate();
 
     function activate() {

@@ -11,7 +11,7 @@
       restrict: 'E',
       templateUrl: 'app/components/typearea/typearea.html',
       scope: {
-          creationDate: '='
+          words: '='
       },
       controller: TypeAreaController,
       controllerAs: 'ta',
@@ -23,55 +23,31 @@
     /** @ngInject */
     function TypeAreaController($scope, $element, $log) {
       var ta = this;
-      ta.insertedText = '';
-      
-      ta.originText = $element.attr('words');
-      $scope.words = $element.attr('words').split(' ');
-      //var words = $scope.words;
-  //    $scope.getElementById('0').toggleClass('highlight');
 
-      $scope.highlight = function(event) {
-        $log.log(event.target);
-        angular.element(event.target).toggleClass('highlight');
-      };
+      //index that follows wich array element (word) has to be checked
+      ta.wordCount    = 0;
 
-      var i=0;
-      $scope.typing = function(text) {
-        if(text == $scope.words[i]){
-            ta.insertedText += text +" ";
-            i++;
-            ta.compareText = '';
+      //watch textared "ng-model"
+      $scope.$watch("compareText", function(val){
+        if(!angular.isUndefined(ta.words[ta.wordCount])){
+          if(ta.words[ta.wordCount].w === val){
+
+            //if it matches, change class
+            ta.words[ta.wordCount].class = "highlight";
+            //word done, go to next word (next array element)
+            ta.wordCount++;
+            //empty text area
+            $scope.compareText = '';
+
+          }
+        }else{
+          //the new word is not defined?
+          //...most probably it means we finished the array
+          alert("you won!");
         }
-        $log.log(text);
 
-      };
-      // var wordsArray = ta.originText.split (" ");
-      
-      // ta.compareText = '';
-      // ta.words = '';
-      
-      // for (var i=0; i < wordsArray.length; i++){
-      //   ta.words += wordsArray[i].replace(/\w+/g, "<span class='highlight'>$&</span> ");
-        
+      });
 
-
-      //   ta.compareText += wordsArray[i] + " ";
-      // }
-
-      // words = ta.originText.replace(/\w+/g, "<span>$&</span>");
-      // words = words.split(" ");
-      // words[0] = words[0].replace("<span>", "<span class='highlight'>");
-
-      
-      // for (var i=0; i < words.length; i++){
-      //   ta.compareText += words[i] + " ";
-      // }
-      
-      // ta.words = words.toString();
-
-
-      // "vm.creationDate" is available by directive option "bindToController: true"
-      //vm.relativeDate = moment(vm.creationDate).fromNow();
     }
   }
 
