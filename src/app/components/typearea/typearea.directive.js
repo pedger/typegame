@@ -23,6 +23,18 @@
     /** @ngInject */
     function TypeAreaController() {
       var ta = this;
+      ta.originText = "original text experiment";
+      var words;
+
+      words = ta.originText.replace(/\w+/g, "<span>$&</span>");
+      words = words.split(" ");
+      words[0] = words[0].replace("<span>", "<span class='highlight'>");
+      ta.compareText = '';
+      for (var i=0; i < words.length; i++){
+        ta.compareText += words[i] + " ";
+      }
+      ta.words = words.toString();
+
 
       // "vm.creationDate" is available by directive option "bindToController: true"
       //vm.relativeDate = moment(vm.creationDate).fromNow();

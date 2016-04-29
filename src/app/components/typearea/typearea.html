@@ -1,4 +1,27 @@
+<md-card>
+	<md-card-content>
+		<h3>Original Text</h3>
+		<p>{{ta.originText}}</p>
+	</md-card-content>
+	
+</md-card>
+
+<md-card>
+	<md-card-content>
+		<h3>Compare Text</h3>
+		<p ng-bind-html="ta.compareText"></p>
+	</md-card-content>
+</md-card>
+
+<md-card>
+	<md-card-content>
+		<h3>Words</h3>
+		<p ng-bind-html="ta.words"></p>
+	</md-card-content>
+</md-card>
+	
 <md-input-container class="md-block">
+	
 	<label>TypeArea</label>
-	<textarea md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+	<textarea rows="5" md-select-on-focus=""></textarea>
 </md-input-container>
