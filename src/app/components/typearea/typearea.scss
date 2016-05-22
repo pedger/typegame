@@ -1,29 +1,14 @@
-.acme-navbar-text{
-  color: white;
+.input-text {
+	width: 50vw;
+	margin-left: 25vw;
+
+	&.error{
+		color: red;
+	}
+	&.not-yet-error{
+		color: black;
+	}
+	&.no-error{
+		color: green!important;
+	}
 }
-
-a {
-  color: black;
-}
-
-h1 {
-  font-size: 2em;
-  margin: 0;
-  line-height: 1.25em;
-}
-
-a:hover, a:focus {
-  color: greenyellow;
-}
-
-type-area span {
-	border: 1px solid green;
-
-
-}
-
-.highlight {
-	background-color: lightgrey;
-	border-color:red;
-}
-

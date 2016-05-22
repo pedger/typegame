@@ -6,23 +6,25 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  function MainController($timeout, toastr) {
     var vm = this;
 
-    vm.awesomeThings = [];
+    vm.awesomeThings, vm.words = [];
     vm.classAnimation = '';
     vm.creationDate = 1461923663095;
     vm.showToastr = showToastr;
 
-    vm.words = [  {w: 'original', class:''},
-                  {w: 'word', class:''},
-                  {w: 'experiment', class:''}
-                ];
+    vm.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+    vm.splitted_words = vm.text.split(" ");
+
+    vm.splitted_words.map(function(word){
+      vm.words.push({w: word, class:''});
+    });
+
 
     activate();
 
     function activate() {
-      getWebDevTec();
       $timeout(function() {
         vm.classAnimation = 'rubberBand';
       }, 4000);
@@ -33,12 +35,5 @@
       vm.classAnimation = '';
     }
 
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
   }
 })();

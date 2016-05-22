@@ -1,12 +1,8 @@
-<div layout="vertical" layout-fill>
-
-  <md-content>
-    <header>
-      <acme-navbar creation-date="main.creationDate"></acme-navbar>
-    </header>
-
-    <type-area words="main.words"></type-area>
-
-  </md-content>
-
+<div class="row">
+	<div class="col-xs-12 words">
+		<span ng-repeat="word in main.words" class="single-word" ng-class="word.class" id="w_{{$index}}">
+			{{word.w}}
+		</span>
+	</div>
+	<type-area words="main.words"></type-area>
 </div>

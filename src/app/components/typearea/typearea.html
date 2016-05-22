@@ -1,30 +1,3 @@
-<md-card>
-	<md-card-content>
-		<h3>Original Object</h3>
-		<p>{{ta.originObj}}</p>
-
-	</md-card-content>
-
-</md-card>
-
-<md-card>
-	<md-card-content>
-		<h3>Words</h3>
-		<p ng-repeat="word in ta.words" class="single-word" ng-class="word.class" id="w_{{$index}}">
-			{{word.w}}
-		</p>
-	</md-card-content>
-</md-card>
-
-<md-card>
-	<md-card-content>
-		<h3>Compare Text</h3>
-		<md-input-container class="md-block">
-			<label>TypeArea</label>
-			<textarea rows="5" md-select-on-focus="" ng-model="compareText"></textarea>
-		</md-input-container>
-		<p ng-bind-html="ta.insertedText"></p>
-	</md-card-content>
-</md-card>
-
-
+<div class="col-xs-12">
+	<input type="text" rows="5" class="input-text {{error}}" no-whitespace ng-trim="false" ng-model="compareText"></input>
+</div>
