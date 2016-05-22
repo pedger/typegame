@@ -37,8 +37,11 @@
 
           angular.forEach($element.children(), function(el){
 
+            //first word
+            ca.copy[0].first_of_line = 1;
+
             if(el.offsetTop !== bef){
-              console.log(ca.copy[i].w);
+              console.log(ca.copy[i].w, bef);
               ca.copy[i].first_of_line = 1;
               bef = el.offsetTop;
             }else{
@@ -48,7 +51,7 @@
             i++;
           });
 
-        }, 0);
+        }, 50);
 
       }
 
