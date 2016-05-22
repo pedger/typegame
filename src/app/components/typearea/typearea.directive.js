@@ -11,7 +11,7 @@
       restrict: 'E',
       templateUrl: 'app/components/typearea/typearea.html',
       scope: {
-          words: '='
+          /*words: '='*/
       },
       controller: TypeAreaController,
       controllerAs: 'ta',
@@ -22,8 +22,9 @@
     return directive;
 
     /** @ngInject */
-    function TypeAreaController($scope, $element, $log) {
+    function TypeAreaController($scope, $element, $log, wordsService) {
       var ta = this;
+      ta.words = wordsService.getWords();
 
       //index that follows wich array element (word) has to be checked
       ta.wordCount    = 0;

@@ -25,19 +25,7 @@
     /** @ngInject */
     function CopyWord($scope, $element, $log, $timeout) {
       var cw = this;
-
-
-      $timeout(function() {
-        if($element[0].offsetTop !== bef){
-          console.log(cw.word.w);
-          cw.word.first_of_line = 1;
-          bef = $element[0].offsetTop;
-        }
-
-      }, 0);
     }
   }
 
 })();
-
-var bef = 0;
