@@ -37,7 +37,7 @@
         if(!angular.isUndefined(ta.words[ta.wordCount])){
 
           if(val){
-            console.log(word2check + " === " + val);
+            //console.log(word2check + " === " + val);
 
             if((word2check.length === val.length) && (word2check !== val)){
               $scope.error = 'error';
