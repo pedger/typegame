@@ -18,7 +18,7 @@
     vm.splitted_words = vm.text.split(" ");
 
     vm.splitted_words.map(function(word){
-      vm.words.push({w: word, class:''});
+      vm.words.push({w: word, class:'', first_of_line: 0});
     });
 
 

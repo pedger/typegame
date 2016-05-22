@@ -17,16 +17,21 @@
     padding: 0 25vw;
     background-color: #FFF9E7;
 
-    span{
+    span.single-word{
       padding: 0 5px 0 5px;
       display: inline-block;
       &.highlight {
-        color: red;
-        display: inline-block;
-        height: 1px;
+        color: #FFF9E7;
+        display: block;
+        width: auto;
+        float: left;
+        height: 16px;
         overflow: hidden;
-        background: red;
         margin: 0;
+        color: red;
+      }
+      &.first{
+        color: blue;
       }
     }
   }
