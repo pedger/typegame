@@ -5,22 +5,29 @@
 // bower:scss
 // endbower
 
-.words{
-  height: auto;
-  max-height: 25vh;
-  overflow-y: scroll;
-  padding: 0 25vw;
+
+.words-container{
   background-color: #FFF9E7;
-  span{
-    padding: 0 5px 0 5px;
-    display: inline-block;
-    &.highlight {
-      color: red;
+  padding:5vh 0;
+
+  .words{
+    height: auto;
+    max-height: 25vh;
+    overflow-y: scroll;
+    padding: 0 25vw;
+    background-color: #FFF9E7;
+
+    span{
+      padding: 0 5px 0 5px;
       display: inline-block;
-      height: 1px;
-      overflow: hidden;
-      background: red;
-      margin: 0;
+      &.highlight {
+        color: red;
+        display: inline-block;
+        height: 1px;
+        overflow: hidden;
+        background: red;
+        margin: 0;
+      }
     }
   }
 }

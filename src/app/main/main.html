@@ -1,8 +1,12 @@
 <div class="row">
-	<div class="col-xs-12 words">
-		<span ng-repeat="word in main.words" class="single-word" ng-class="word.class" id="w_{{$index}}">
-			{{word.w}}
-		</span>
+	<div class="words-container container-fluid">
+		<div class="col-xs-12 words">
+			<span ng-repeat="word in main.words" class="single-word" ng-class="word.class" id="w_{{$index}}">
+				{{word.w}}
+			</span>
+		</div>
 	</div>
+</div>
+<div class="row">
 	<type-area words="main.words"></type-area>
 </div>
