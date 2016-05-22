@@ -22,9 +22,12 @@
     return directive;
 
     /** @ngInject */
-    function TypeAreaController($scope, $element, $log, wordsService) {
+    function TypeAreaController($scope, $element, $log, wordsService, ngAudio) {
       var ta = this;
       ta.words = wordsService.getWords();
+
+      ta.sound = ngAudio.load("/assets/sounds/single_type.mp3"); // returns NgAudioObject
+      ta.sound.performance = 0.1;
 
       //index that follows wich array element (word) has to be checked
       ta.wordCount    = 0;
@@ -38,6 +41,7 @@
         if(!angular.isUndefined(ta.words[ta.wordCount])){
 
           if(val){
+            ta.sound.play();
             //console.log(word2check + " === " + val);
 
             if((word2check.length === val.length) && (word2check !== val)){
@@ -63,6 +67,7 @@
 
             }
           }
+
         }else{
           //the new word is not defined?
           //...most probably it means we finished the array
