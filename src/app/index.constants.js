@@ -4,7 +4,6 @@
 
   angular
     .module('typegame')
-    .constant('malarkey', malarkey)
     .constant('moment', moment);
 
 })();
