@@ -5,6 +5,12 @@
 // bower:scss
 // endbower
 
+*{
+    transition: color 0.2s ease-in;
+    -ms-transition: color 0.2s ease-in;
+    -moz-transition: color 0.2s ease-in;
+    -webkit-transition: color 0.2s ease-in;
+}
 
 .words-container{
   background-color: #FFF9E7;
@@ -21,14 +27,13 @@
       padding: 0 5px 0 5px;
       display: inline-block;
       &.highlight {
-        color: #FFF9E7;
-        display: block;
+        color: #FFF9E7!important;
+        // display: block;
         width: auto;
         float: left;
-        height: 16px;
+        // height: 1px;
         overflow: hidden;
         margin: 0;
-        color: red;
       }
       &.first{
         color: blue;

@@ -27,10 +27,12 @@
       var i = 0;
       var bef = 0;
       var w = angular.element($window);
+      var resizeTime;
       ca.copy = wordsService.getWords();
       //console.log(ca.copy);
 
       ca.findFirstLines = function(){
+        $timeout.cancel(resizeTime);
         i = 0;
 
         $timeout(function() {
@@ -51,14 +53,17 @@
             i++;
           });
 
-        }, 0);
+        }, 100);
 
       }
 
       ca.findFirstLines();
 
       w.bind('resize', function(){
-         ca.findFirstLines();
+        $timeout.cancel(resizeTime);
+        resizeTime = $timeout(function() {
+          ca.findFirstLines();
+        }, 200);
       });
 
     }
