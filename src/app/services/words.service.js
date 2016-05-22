@@ -16,12 +16,18 @@
       words.push({w: word, class:'', first_of_line: 0});
     });
 
-
-    this.getWords = getWords;
-
     function getWords() {
       return words;
     }
+
+    function setFirstLineFlag(index, bool){
+      //first word
+      words[0].first_of_line = 1;
+      words[index].first_of_line = bool;
+    }
+
+    this.getWords         = getWords;
+    this.setFirstLineFlag = setFirstLineFlag;
   }
 
 })();

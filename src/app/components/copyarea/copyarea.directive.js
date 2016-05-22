@@ -39,15 +39,12 @@
 
           angular.forEach($element.children(), function(el){
 
-            //first word
-            ca.copy[0].first_of_line = 1;
-
             if(el.offsetTop !== bef){
-              console.log(ca.copy[i].w, bef);
-              ca.copy[i].first_of_line = 1;
+              //console.log(ca.copy[i].w, bef);
+              wordsService.setFirstLineFlag(i,1);
               bef = el.offsetTop;
             }else{
-              ca.copy[i].first_of_line = 0;
+              wordsService.setFirstLineFlag(i,0);
             }
 
             i++;
