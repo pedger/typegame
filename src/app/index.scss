@@ -21,13 +21,13 @@
     max-height: 25vh;
     overflow-y: scroll;
     padding: 0 25vw;
-    background-color: #FFF9E7;
+    background-color: transparent;
 
     span.single-word{
       padding: 0 5px 0 5px;
       display: inline-block;
       &.highlight {
-        color: #FFF9E7!important;
+        color: #696352!important;
       }
       &.first{
         color: blue;
