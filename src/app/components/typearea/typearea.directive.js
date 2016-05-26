@@ -62,6 +62,7 @@
               ta.words[ta.wordCount].class = "highlight";
               //word done, go to next word (next array element)
               ta.wordCount++;
+              ta.words[ta.wordCount].class = "mark";
               //empty text area
               $scope.compareText = '';
 
