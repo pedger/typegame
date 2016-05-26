@@ -38,7 +38,7 @@
 
         var word2check = ta.words[ta.wordCount].w;
 
-        if(!angular.isUndefined(ta.words[ta.wordCount])){
+        if(angular.isDefined(ta.words[ta.wordCount])){
 
           if(val){
             ta.sound.play();
