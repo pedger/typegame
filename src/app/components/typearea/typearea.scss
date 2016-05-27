@@ -1,6 +1,7 @@
 .input-text {
 	width: 50vw;
 	margin-left: 25vw;
+	border: 0px.
 
 	&.error{
 		color: red;
@@ -11,4 +12,8 @@
 	&.no-error{
 		color: green!important;
 	}
+}
+
+.restart-button {
+	
 }

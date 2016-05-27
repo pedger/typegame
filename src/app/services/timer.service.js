@@ -22,6 +22,10 @@
           }, period);
     }
 
+    function getTimeLeft() {
+        return counter;
+    }
+
     function reset(){
       //console.log('timer reset');
       $timeout.cancel(timer);
@@ -32,14 +36,13 @@
       $timeout.cancel(timer);
     }
 
-    function getTimeLeft() {
-        return counter;
-    }
-
+    this.initCounter    = initCounter;
+    
     this.countDown      = countDown;
-    this.stopTimer      = stopTimer;
     this.getTimeLeft    = getTimeLeft;
     this.reset          = reset;
+    this.stopTimer      = stopTimer;
+
   }
 
 })();

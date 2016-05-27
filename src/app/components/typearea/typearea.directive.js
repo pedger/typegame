@@ -22,16 +22,13 @@
     return directive;
 
     /** @ngInject */
-    function TypeAreaController($scope, $element, $log, wordsService, ngAudio, $rootScope, timerService, toastr) {
+    function TypeAreaController($scope, $element, $log, wordsService, $rootScope, timerService, toastr) {
       var ta = this;
       
       ta.gameStart = false;
       ta.gameOver = false;
       
       ta.words = wordsService.getWords();
-
-      ta.sound = ngAudio.load("/assets/sounds/single_type.mp3"); // returns NgAudioObject
-      ta.sound.performance = 0.1;
 
       //index that follows wich array element (word) has to be checked
       ta.wordCount    = 0;
@@ -52,11 +49,7 @@
               $rootScope.$broadcast('gameStart');
               ta.gameStart = true;
             }
-
-            
-            ta.sound.play();
-            //console.log(word2check + " === " + val);
-
+     
             if((word2check.length === val.length) && (word2check !== val)){
               $scope.error = 'error';
             }else if (val.length > 0){
@@ -90,24 +83,31 @@
 
       });
 
+      //Listen to timeUp event and ends the game, blocking text area and displaying "Game Over!"
       $scope.$on('timeUp', function(){
-        console.log("timesup");
         ta.gameOver = true;
-        toastr.error("Game Over - Time's up");
+        toastr.info("Game Over - Time's up ");
+        toastr.success("Total words: "+ ta.wordCount + "<br/>Total Time: " + timerService.initCounter/1000 + " seconds", "Score", {
+          timeOut: 10000,
+          closeButton: true,
+          tapToDismiss: true
+        });
+
         //$rootScope.$broadcast('gameOver');
 
       });
       
+      //set all variables to default value and reset timer
       $scope.restartGame = function(){
-        
         ta.gameOver   = false;
         ta.gameStart  = false;
         ta.wordCount  = 0;
         $scope.error = 'no-error';
-        wordsService.removeClasses();
-        wordsService.setClass(0,'mark');
         $scope.compareText = '';
 
+        wordsService.removeClasses();
+        wordsService.setClass(0,'mark');
+        
         $rootScope.$broadcast('gameReset');
 
       }

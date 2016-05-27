@@ -22,7 +22,7 @@
     return directive;
 
     /** @ngInject */
-    function timerController($scope, $element, $rootScope, timerService, toastr) {
+    function timerController($scope, $element, $rootScope, timerService) {
       var ti = this;
 
 
@@ -34,6 +34,8 @@
         ti.timer = timerService.reset();
       });      
 
+
+      //watch timer counter and broadcasts timeUp
       $scope.$watch(function(){
           return timerService.getTimeLeft(0);
         }, function(newValue){
