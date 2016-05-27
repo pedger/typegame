@@ -22,10 +22,14 @@
     return directive;
 
     /** @ngInject */
-    function TypeAreaController($scope, $element, $log, wordsService, ngAudio, $rootScope) {
+    function TypeAreaController($scope, $element, $log, wordsService, ngAudio, $rootScope, timerService) {
       var ta = this;
-      ta.gameStart = false;
+      
+      $scope.disabled = false;
 
+      ta.gameStart = false;
+      ta.gameOver = false;
+      
       ta.words = wordsService.getWords();
 
       ta.sound = ngAudio.load("/assets/sounds/single_type.mp3"); // returns NgAudioObject
@@ -83,6 +87,14 @@
           //...most probably it means we finished the array
           alert("you won!");
         }
+
+      });
+
+      $scope.$on('timeUp', function(){
+        console.log("timesup");
+        $scope.disabled = true;
+        ta.gameOver = true;
+        //$rootScope.$broadcast('gameOver');
 
       });
 
