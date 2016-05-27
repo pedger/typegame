@@ -25,18 +25,18 @@
     function timerController($scope, $element, timerService) {
       var ti = this;
 
-    
+
       $scope.$on('gameStart', function(){
         ti.timer = timerService.countDown();
       });
 
       $scope.$watch(function(){
-          return timerService.getTimeLeft();
+          return timerService.getTimeLeft(1);
         }, function(newValue){
           $scope.counter = newValue;
       });
 
-      
+
     }
   }
 
