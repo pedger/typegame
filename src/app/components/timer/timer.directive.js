@@ -31,10 +31,11 @@
       });
 
       $scope.$watch(function(){
-          return timerService.getTimeLeft(1);
+          return timerService.getTimeLeft(0);
         }, function(newValue){
-          $scope.counter = newValue;
-          if ($scope.counter == 0) $rootScope.$broadcast("timeUp");
+          $scope.counter = moment(newValue).format("mm:ss.SS");
+          //console.log($scope.counter);
+          if (newValue == 0) $rootScope.$broadcast("timeUp");
       });
 
 

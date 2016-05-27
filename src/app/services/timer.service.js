@@ -10,7 +10,7 @@
 
     var period = 10;
     var time = 0;
-    var counter = 10000;
+    var counter = 1000;
     var timer;
 
     function countDown(){
@@ -23,7 +23,6 @@
 
     function stopTimer(){
       $timeout.cancel(timer);
-      alert('stopped');
     }
 
     function getTimeLeft(format) {
