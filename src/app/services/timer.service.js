@@ -8,9 +8,9 @@
   /** @ngInject */
   function timerService($timeout) {
 
-    var period = 10;
-    var time = 0;
-    var counter = 1000;
+    var period =10;
+    var initCounter = 2000;
+    var counter = initCounter;
     var timer;
 
     function countDown(){
@@ -18,24 +18,28 @@
             counter = counter-period;
             if (counter > 0) countDown();
             else stopTimer();
+
           }, period);
+    }
+
+    function reset(){
+      //console.log('timer reset');
+      $timeout.cancel(timer);
+      counter = initCounter;
     }
 
     function stopTimer(){
       $timeout.cancel(timer);
     }
 
-    function getTimeLeft(format) {
-      if(format){
-        return moment(counter).format("mm:ss.SS");
-      }else{
+    function getTimeLeft() {
         return counter;
-      }
     }
 
     this.countDown      = countDown;
     this.stopTimer      = stopTimer;
     this.getTimeLeft    = getTimeLeft;
+    this.reset          = reset;
   }
 
 })();

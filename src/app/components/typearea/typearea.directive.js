@@ -22,11 +22,9 @@
     return directive;
 
     /** @ngInject */
-    function TypeAreaController($scope, $element, $log, wordsService, ngAudio, $rootScope, timerService) {
+    function TypeAreaController($scope, $element, $log, wordsService, ngAudio, $rootScope, timerService, toastr) {
       var ta = this;
       
-      $scope.disabled = false;
-
       ta.gameStart = false;
       ta.gameOver = false;
       
@@ -38,7 +36,9 @@
       //index that follows wich array element (word) has to be checked
       ta.wordCount    = 0;
       $scope.error = 'no-error';
-
+      
+      wordsService.setClass(ta.wordCount,'mark');
+      
       //watch textared "ng-model"
       $scope.$watch("compareText", function(val){
 
@@ -92,13 +92,28 @@
 
       $scope.$on('timeUp', function(){
         console.log("timesup");
-        $scope.disabled = true;
         ta.gameOver = true;
+        toastr.error("Game Over - Time's up");
         //$rootScope.$broadcast('gameOver');
 
       });
+      
+      $scope.restartGame = function(){
+        
+        ta.gameOver   = false;
+        ta.gameStart  = false;
+        ta.wordCount  = 0;
+        $scope.error = 'no-error';
+        wordsService.removeClasses();
+        wordsService.setClass(0,'mark');
+        $scope.compareText = '';
 
+        $rootScope.$broadcast('gameReset');
+
+      }
     }
+
+    
   }
 
 })();

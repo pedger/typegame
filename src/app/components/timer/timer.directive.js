@@ -22,7 +22,7 @@
     return directive;
 
     /** @ngInject */
-    function timerController($scope, $element, $rootScope, timerService) {
+    function timerController($scope, $element, $rootScope, timerService, toastr) {
       var ti = this;
 
 
@@ -30,11 +30,14 @@
         ti.timer = timerService.countDown();
       });
 
+      $scope.$on('gameReset', function(){
+        ti.timer = timerService.reset();
+      });      
+
       $scope.$watch(function(){
           return timerService.getTimeLeft(0);
         }, function(newValue){
-          $scope.counter = moment(newValue).format("mm:ss.SS");
-          //console.log($scope.counter);
+          $scope.counter = newValue;
           if (newValue == 0) $rootScope.$broadcast("timeUp");
       });
 

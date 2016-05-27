@@ -29,7 +29,7 @@
       toastr.info('Here we can show HTML <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><u>with links</u></a>');
       vm.classAnimation = '';
     }
-    showToastr();
+    //showToastr();
 
   }
 })();

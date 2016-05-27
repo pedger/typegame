@@ -23,7 +23,7 @@
     return directive;
 
     /** @ngInject */
-    function CopyWord($scope, $element, $log, $timeout) {
+    function CopyWord($scope, $element) {
       var cw = this;
     }
   }
