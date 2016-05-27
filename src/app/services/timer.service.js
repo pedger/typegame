@@ -8,9 +8,9 @@
   /** @ngInject */
   function timerService($timeout) {
     
-    var period = 1000;
+    var period = 500;
     var time = 0;
-    var counter = 3;
+    var counter = 1;
     var timer;
     
     function countDown(){
