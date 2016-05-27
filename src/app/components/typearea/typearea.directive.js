@@ -59,10 +59,10 @@
             if(word2check + " " === val){
 
               //if it matches, change class
-              ta.words[ta.wordCount].class = "highlight";
+              wordsService.setClass(ta.wordCount,'highlight');
               //word done, go to next word (next array element)
               ta.wordCount++;
-              ta.words[ta.wordCount].class = "mark";
+              wordsService.setClass(ta.wordCount,'mark');
               //empty text area
               $scope.compareText = '';
 

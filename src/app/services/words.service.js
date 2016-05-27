@@ -26,8 +26,14 @@
       words[index].first_of_line = bool;
     }
 
+    function setClass(index, _class){
+      words[index].class = _class;
+
+    }
+
     this.getWords         = getWords;
     this.setFirstLineFlag = setFirstLineFlag;
+    this.setClass         = setClass;
   }
 
 })();
