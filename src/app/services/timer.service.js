@@ -10,25 +10,28 @@
     
     var period = 1000;
     var time = 0;
+    var counter = 3;
     var timer;
     
-    function startTimer(){
+    function countDown(){
       timer = $timeout(function() {
-          console.log(timer);
-          }, period);  
+            counter--;
+            if (counter > 0) countDown();
+            else stopTimer();
+          }, period); 
     }
     
     function stopTimer(){
       $timeout.cancel(timer);
     }
 
-    function getTime() {
-      return this.timer;
+    function getTimeLeft() {
+      return counter;
     }
 
-    this.startTimer      = startTimer;
+    this.countDown      = countDown;
     this.stopTimer      = stopTimer;
-    this.getTime         = getTime;
+    this.getTimeLeft    = getTimeLeft;
   }
 
 })();

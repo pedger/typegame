@@ -22,8 +22,10 @@
     return directive;
 
     /** @ngInject */
-    function TypeAreaController($scope, $element, $log, wordsService, ngAudio) {
+    function TypeAreaController($scope, $element, $log, wordsService, ngAudio, $rootScope) {
       var ta = this;
+      ta.gameStart = false;
+
       ta.words = wordsService.getWords();
 
       ta.sound = ngAudio.load("/assets/sounds/single_type.mp3"); // returns NgAudioObject
@@ -41,6 +43,13 @@
         if(angular.isDefined(ta.words[ta.wordCount])){
 
           if(val){
+            
+            if (!ta.gameStart){
+              $rootScope.$broadcast('gameStart');
+              ta.gameStart = true;
+            }
+
+            
             ta.sound.play();
             //console.log(word2check + " === " + val);
 

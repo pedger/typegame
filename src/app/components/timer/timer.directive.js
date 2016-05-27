@@ -14,7 +14,7 @@
           /*words: '='*/
       },
       controller: timerController,
-      controllerAs: 'tia',
+      controllerAs: 'ti',
       bindToController: true,
       replace: true
     };
@@ -22,15 +22,21 @@
     return directive;
 
     /** @ngInject */
-    function timerController($scope, $element, $log, timerService) {
-      var tia = this;
+    function timerController($scope, $element, timerService) {
+      var ti = this;
+
+    
+      $scope.$on('gameStart', function(){
+        ti.timer = timerService.countDown();
+      });
+
+      $scope.$watch(function(){
+          return timerService.getTimeLeft();
+        }, function(newValue){
+          $scope.counter = newValue;
+      });
 
       
-      
-      timerService.startTimer();
-     // tia.time = timerService.time;    
-     // console.log(timerService.getTime());
-
     }
   }
 
