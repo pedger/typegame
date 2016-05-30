@@ -22,16 +22,22 @@
     return directive;
 
     /** @ngInject */
-    function badges($scope) {
-      //var ba = this;
-      
+    function badges($scope, ngAudio) {
+      var ba = this;
+     
       $scope.badges = {
           '10words':false,
           'noErrors':false,
 
       };
 
+      ba.sound = ngAudio.load("/assets/sounds/coin-get.ogg"); // returns NgAudioObject
+      ba.sound.performance = 0.1;
+      ba.sound.volume = 0.3;
+
+
       $scope.$on("achievement-5words" ,function(){
+        ba.sound.play();
         $scope.issueBadge('5words');
       });
 
@@ -44,6 +50,7 @@
       });
 
       $scope.issueBadge = function(achievement) {
+        
         switch(achievement){
           case '5words':
             $scope.badges['5words'] = true;

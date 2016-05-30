@@ -14,7 +14,7 @@
     vm.creationDate = 1461923663095;
     vm.showToastr = showToastr;
 
-    vm.words = wordsService.getWords();
+    //vm.words = wordsService.getWords();
 
 
     activate();
