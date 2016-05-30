@@ -33,6 +33,7 @@
       //index that follows wich array element (word) has to be checked
       ta.wordCount    = 0;
       $scope.error = 'no-error';
+      ta.numErrors = 0;
       
       wordsService.setClass(ta.wordCount,'mark');
       
@@ -46,12 +47,14 @@
           if(val){
             
             if (!ta.gameStart){
+              
               $rootScope.$broadcast('gameStart');
               ta.gameStart = true;
             }
      
             if((word2check.length === val.length) && (word2check !== val)){
               $scope.error = 'error';
+              ta.numErrors ++;
             }else if (val.length > 0){
               if ((val.substr(0, val.length) === word2check.substr(0, val.length)) && (word2check.length === val.length) && (word2check === val)) {
                 $scope.error = 'no-error';
@@ -71,8 +74,10 @@
               wordsService.setClass(ta.wordCount,'mark');
               //empty text area
               $scope.compareText = '';
-
+              ta.calculateAchievement();  
             }
+
+            
           }
 
         }else{
@@ -86,6 +91,7 @@
       //Listen to timeUp event and ends the game, blocking text area and displaying "Game Over!"
       $scope.$on('timeUp', function(){
         ta.gameOver = true;
+        ta.calculateAchievement();
         toastr.info("Game Over - Time's up ");
         toastr.success("Total words: "+ ta.wordCount + "<br/>Total Time: " + timerService.initCounter/1000 + " seconds", "Score", {
           timeOut: 10000,
@@ -104,11 +110,24 @@
         ta.wordCount  = 0;
         $scope.error = 'no-error';
         $scope.compareText = '';
+        $scope.numErrors = 0;
 
         wordsService.removeClasses();
         wordsService.setClass(0,'mark');
         
         $rootScope.$broadcast('gameReset');
+      }
+
+      ta.calculateAchievement = function(){
+        console.log("achievement");
+        if (ta.wordCount == 5)
+          $rootScope.$broadcast("achievement-5words");
+        console.log(ta.gameOver, ta.numErrors);
+        if (ta.gameOver && ta.numErrors == 0) {
+          console.log("achievement NO ERRORS");
+          $rootScope.$broadcast("achievement-noerrors");          
+        }
+
 
       }
     }
