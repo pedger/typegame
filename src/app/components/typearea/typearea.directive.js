@@ -22,7 +22,7 @@
     return directive;
 
     /** @ngInject */
-    function TypeAreaController($scope, $element, $log, wordsService, $rootScope, timerService, toastr) {
+    function TypeAreaController($scope, $element, $log, wordsService, $rootScope, timerService, toastr, scoresService) {
       var ta = this;
       
       ta.gameStart = false;
@@ -116,16 +116,19 @@
         wordsService.setClass(0,'mark');
         
         $rootScope.$broadcast('gameReset');
+        scoresService.resetScores();
       }
 
       ta.calculateAchievement = function(){
         console.log("achievement");
-        if (ta.wordCount == 5)
-          $rootScope.$broadcast("achievement-5words");
-        console.log(ta.gameOver, ta.numErrors);
+        if (ta.wordCount == 5) {
+          console.log("achievement 5 words");
+          scoresService.issueBadge('5words');
+          //$rootScope.$broadcast("achievement-5words");
+        }
         if (ta.gameOver && ta.numErrors == 0) {
           console.log("achievement NO ERRORS");
-          $rootScope.$broadcast("achievement-noerrors");          
+          scoresService.issueBadge("noErrors");          
         }
 
 
