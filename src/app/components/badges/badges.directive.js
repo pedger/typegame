@@ -23,8 +23,7 @@
 
     /** @ngInject */
     function badges($scope, scoresService) {
-      var ba = this;
-
+      
       $scope.$watch(function(){
           return scoresService.getBadges();
         }, function(newValue){

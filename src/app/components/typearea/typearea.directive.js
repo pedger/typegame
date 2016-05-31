@@ -120,14 +120,14 @@
       }
 
       ta.calculateAchievement = function(){
-        console.log("achievement");
+        $log.log("achievement");
         if (ta.wordCount == 5) {
-          console.log("achievement 5 words");
+          $log.log("achievement 5 words");
           scoresService.issueBadge('5words');
           //$rootScope.$broadcast("achievement-5words");
         }
         if (ta.gameOver && ta.numErrors == 0) {
-          console.log("achievement NO ERRORS");
+          $log.log("achievement NO ERRORS");
           scoresService.issueBadge("noErrors");          
         }
 

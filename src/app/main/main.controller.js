@@ -6,16 +6,13 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, toastr, wordsService) {
+  function MainController($timeout, toastr) {
     var vm = this;
 
     vm.awesomeThings, vm.words = [];
     vm.classAnimation = '';
     vm.creationDate = 1461923663095;
     vm.showToastr = showToastr;
-
-    //vm.words = wordsService.getWords();
-
 
     activate();
 

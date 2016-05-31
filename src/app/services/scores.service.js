@@ -9,8 +9,8 @@
   function scoresService() {
 
     var badges = {
-          '10words':false,
-          'noErrors':false,
+      '10words':false,
+      'noErrors':false
     };
 
     function issueBadge(achievement) {
