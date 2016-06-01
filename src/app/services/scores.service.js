@@ -20,7 +20,8 @@
 
     var badges = {
       'firstkill':false,
-      'noErrors':false
+      'noErrors':false,
+      '+40WPM': false
     };
 
     //function: calculateScores
@@ -45,6 +46,8 @@
         badges['firstkill'] = true;
       if (!scores.gameStart && scores.errors == 0)
           badges['noErrors'] = true;
+      if (scores.wpm > 40 && !scores.gameStart)
+          badges['+40WPM'] = true;
     }
 
     function getScores(){
