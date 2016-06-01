@@ -19,7 +19,7 @@
     var scores = defaultScores;
 
     var badges = {
-      '5words':false,
+      'firstkill':false,
       'noErrors':false
     };
 
@@ -41,8 +41,8 @@
 
     //Control badges object
     function calculateBadges() {
-      if (scores.wordCount == 5)
-        badges['5words'] = true;
+      if (scores.wordCount == 1)
+        badges['firstkill'] = true;
       if (!scores.gameStart && scores.errors == 0)
           badges['noErrors'] = true;
     }
