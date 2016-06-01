@@ -38,7 +38,7 @@
       wordsService.setClass(ta.wordCount,'mark');
       
       //watch textared "ng-model"
-      $scope.$watch("compareText", function(val){
+      $scope.$watch("compareText", function(val, oldval){
 
         var word2check = ta.words[ta.wordCount].w;
 
@@ -77,7 +77,7 @@
             }
             else {
               //$log.log(">"+val[val.length-1]+"<");
-              if (val.length > 1 && val[val.length-1] == " ") scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), null, val ); 
+              if (val.length > 1 && val[val.length-1] == " " && val.length > oldval.length) scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), null, val ); 
             }
 
             
@@ -115,7 +115,7 @@
         wordsService.setClass(0,'mark');
         
         scoresService.resetScores();
-        
+
         $rootScope.$broadcast('gameReset');
         
       }     
