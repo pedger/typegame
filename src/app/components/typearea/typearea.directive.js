@@ -45,6 +45,7 @@
         if(angular.isDefined(ta.words[ta.wordCount])){
 
           if(val){
+
             
             if (!ta.gameStart){
               $rootScope.$broadcast('gameStart');
@@ -73,11 +74,12 @@
               wordsService.setClass(ta.wordCount,'mark');
               //empty text area
               $scope.compareText = '';
-              scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), val.trim(), null ); 
+              scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime(), val.trim(), null ); 
             }
             else {
               //$log.log(">"+val[val.length-1]+"<");
-              if (val.length > 1 && val[val.length-1] == " " && val.length > oldval.length) scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), null, val.trim() ); 
+              if (val.length > 1 && val[val.length-1] == " " && val.length > oldval.length)
+                  scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime(), null, val.trim() ); 
             }
 
             
@@ -95,7 +97,7 @@
       $scope.$on('timeUp', function(){
         ta.gameStart = false;
         ta.gameOver = true;
-        scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime()); 
+        scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime()); 
         toastr.info("Game Over - Time's up ");
 
         //$rootScope.$broadcast('gameOver');

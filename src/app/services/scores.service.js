@@ -8,6 +8,7 @@
   /** @ngInject */
   function scoresService($log) {
     var defaultScores = {
+      username:'',
       gameStart: false,
       wordCount : 0,
       timeElapsed: 0,
@@ -25,8 +26,9 @@
     };
 
     //function: calculateScores
-    function calculateScores(gameStart, wordCount, timeElapsed, correctWord, wrongWord){
+    function calculateScores(username, gameStart, wordCount, timeElapsed, correctWord, wrongWord){
       //$log.info("calculating Scores");
+      scores.username = username;
       scores.gameStart = gameStart;
       scores.wordCount = wordCount;
       scores.timeElapsed = timeElapsed;

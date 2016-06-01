@@ -11,7 +11,8 @@
       restrict: 'E',
       templateUrl: 'app/components/scores/scores.html',
       scope: {
-          'scores':'&'
+          'scores':'&',
+          'lastScores':'&'
       },
       controller: scoresController,
       controllerAs: 'sc',
@@ -28,7 +29,12 @@
       sc.sound = ngAudio.load("/assets/sounds/coin-get.ogg"); // returns NgAudioObject
       sc.sound.performance = 0.1;
       sc.sound.volume = 0.3; 
-
+      
+      localStorage.removeItem("scores");
+      $scope.lastScores = angular.fromJson(localStorage.getItem("scores"));
+      if ($scope.lastScores == null) {
+        $scope.lastScores = [];
+      }
 
       $scope.$watch(function(){
           return scoresService.getBadges();
@@ -38,12 +44,22 @@
 
       });
 
-       $scope.$watch(function(){
+      $scope.$watch(function(){
           return scoresService.getScores();
         }, function(newValue){
           $scope.scores = newValue;
       });
 
+      $scope.$on('timeUp', function(){
+        var date = new Date();
+        $scope.scores.date = date.getTime();
+        $scope.scores.badges = $scope.badges;
+
+        $scope.lastScores.push($scope.scores);
+        
+        localStorage.setItem("scores", angular.toJson($scope.lastScores));
+        $scope.lastScores = angular.fromJson(localStorage.getItem("scores"));
+      });
 
     }
   }

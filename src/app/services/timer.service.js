@@ -9,7 +9,7 @@
   function timerService($timeout) {
 
     var period =10;
-    var initCounter = 3 *1000;
+    var initCounter = 4 *1000;
     var counter = initCounter;
     var time = 0;
     var timer;
