@@ -1,0 +1,14 @@
+<div class="scores">
+	Achievements:
+	<div class="badge" ng-show="badges['5words']">5 WORDS</div>
+	<div class="badge" ng-show="badges['noErrors']">NO ERRORS</div>
+
+	<br/>
+	
+	Scores:
+	<div>Words: <span>{{scores.wordCount}}</span></div>
+	<div>Time Elapsed: <span>{{scores.timeElapsed | date:'mm:ss:sss'}}</span></div>
+	<div>WPM: <span>{{scores.wpm}}</span></div>
+	<div>correctWords: <span>{{scores.correctWords.length}}::{{scores.correctWords}}</span></div>
+	<div>wrongWords: <span>{{scores.wrongWords.length}}::{{scores.wrongWords}}</span></div>
+</div>

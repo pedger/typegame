@@ -22,7 +22,7 @@
     return directive;
 
     /** @ngInject */
-    function TypeAreaController($scope, $element, $log, wordsService, $rootScope, timerService, toastr, scoresService) {
+    function TypeAreaController($scope, $rootScope, $element, $log, toastr, wordsService, timerService, scoresService) {
       var ta = this;
       
       ta.gameStart = false;
@@ -31,9 +31,9 @@
       ta.words = wordsService.getWords();
 
       //index that follows wich array element (word) has to be checked
-      ta.wordCount    = 0;
-      $scope.error = 'no-error';
+      ta.wordCount = 0;
       ta.numErrors = 0;
+      $scope.error = 'no-error';
       
       wordsService.setClass(ta.wordCount,'mark');
       
@@ -47,11 +47,9 @@
           if(val){
             
             if (!ta.gameStart){
-              
               $rootScope.$broadcast('gameStart');
               ta.gameStart = true;
             }
-     
             if((word2check.length === val.length) && (word2check !== val)){
               $scope.error = 'error';
               ta.numErrors ++;
@@ -62,6 +60,7 @@
                 $scope.error = 'not-yet-error';
               }else{
                 $scope.error = 'error';
+                
               }
             }
 
@@ -74,7 +73,11 @@
               wordsService.setClass(ta.wordCount,'mark');
               //empty text area
               $scope.compareText = '';
-              ta.calculateAchievement();  
+              scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), val, null ); 
+            }
+            else {
+              //$log.log(">"+val[val.length-1]+"<");
+              if (val.length > 1 && val[val.length-1] == " ") scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), null, val ); 
             }
 
             
@@ -90,14 +93,10 @@
 
       //Listen to timeUp event and ends the game, blocking text area and displaying "Game Over!"
       $scope.$on('timeUp', function(){
+        ta.gameStart = false;
         ta.gameOver = true;
-        ta.calculateAchievement();
+        scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime()); 
         toastr.info("Game Over - Time's up ");
-        toastr.success("Total words: "+ ta.wordCount + "<br/>Total Time: " + timerService.initCounter/1000 + " seconds", "Score", {
-          timeOut: 10000,
-          closeButton: true,
-          tapToDismiss: true
-        });
 
         //$rootScope.$broadcast('gameOver');
 
@@ -115,24 +114,11 @@
         wordsService.removeClasses();
         wordsService.setClass(0,'mark');
         
-        $rootScope.$broadcast('gameReset');
         scoresService.resetScores();
-      }
-
-      ta.calculateAchievement = function(){
-        $log.log("achievement");
-        if (ta.wordCount == 5) {
-          $log.log("achievement 5 words");
-          scoresService.issueBadge('5words');
-          //$rootScope.$broadcast("achievement-5words");
-        }
-        if (ta.gameOver && ta.numErrors == 0) {
-          $log.log("achievement NO ERRORS");
-          scoresService.issueBadge("noErrors");          
-        }
-
-
-      }
+        
+        $rootScope.$broadcast('gameReset');
+        
+      }     
     }
 
     
