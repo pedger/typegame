@@ -73,11 +73,11 @@
               wordsService.setClass(ta.wordCount,'mark');
               //empty text area
               $scope.compareText = '';
-              scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), val, null ); 
+              scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), val.trim(), null ); 
             }
             else {
               //$log.log(">"+val[val.length-1]+"<");
-              if (val.length > 1 && val[val.length-1] == " " && val.length > oldval.length) scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), null, val ); 
+              if (val.length > 1 && val[val.length-1] == " " && val.length > oldval.length) scoresService.calculateScores(ta.gameStart, ta.wordCount, timerService.getTime(), null, val.trim() ); 
             }
 
             
