@@ -27,21 +27,22 @@
     };
 
     //function: calculateScores
-    function calculateScores(username, gameStart, wordCount, timeElapsed, typedWords){
+    function calculateScores(username, gameStart, wordCount, timeElapsed, typedWords, errors){
       //$log.info("calculating Scores");
       scores.username = username;
       scores.gameStart = gameStart;
       scores.wordCount = wordCount;
       scores.timeElapsed = timeElapsed;
-      scores.wpm = wordCount / (timeElapsed / 60000)
+      scores.errors = errors;
+      scores.wpm = typedWords.length / (timeElapsed / 60000)
       if (typedWords) {        
         scores.correctWords = [];
         scores.wrongWords = [];
         for (var i=0; i < typedWords.length; i++){
           if (typedWords[i]['correct'] == 0) {
             scores.wrongWords.push(typedWords[i]['word']);  
-            scores.errors++;
-          }
+            
+          }               
           else 
             scores.correctWords.push(typedWords[i]['word']);
 

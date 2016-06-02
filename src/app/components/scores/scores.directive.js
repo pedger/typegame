@@ -50,7 +50,7 @@
           $scope.scores = newValue;
       });
 
-      $scope.$on('timeUp', function(){
+      $scope.$on('finalScores', function(){
         var date = new Date();
         $scope.scores.date = date.getTime();
         $scope.scores.badges = $scope.badges;

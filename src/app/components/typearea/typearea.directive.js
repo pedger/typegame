@@ -47,7 +47,6 @@
 
           if(val){
 
-            
             if (!ta.gameStart){
               $rootScope.$broadcast('gameStart');
               ta.gameStart = true;
@@ -55,16 +54,13 @@
 
             if((word2check.length === val.length) && (word2check !== val)){
               $scope.error = 'error';
-              ta.numErrors ++;
-              
             }else if (val.length > 0){
               if ((val.substr(0, val.length) === word2check.substr(0, val.length)) && (word2check.length === val.length) && (word2check === val)) {
                 $scope.error = 'no-error';
-              }else if(val.substr(0, val.length) === word2check.substr(0, val.length)){
+              } else if(val.substr(0, val.length) === word2check.substr(0, val.length)){
                 $scope.error = 'not-yet-error';
-              }else{
+              } else {
                 $scope.error = 'error';
-                
               }
             }
 
@@ -78,13 +74,14 @@
               wordsService.setClass(ta.wordCount,'mark');
               //empty text area
               $scope.compareText = '';
-              scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime(), ta.typedWords ); 
+              scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime(), ta.typedWords, ta.numErrors); 
             }
             else if (val.substr(val.length-1 ) == ' ') {
               // WORD IS WRONG
 
               // only counts as wrong word if spacebar is pressed
               if (val.length > oldval.length && val[val.length-1] == " ")
+                ta.numErrors ++;
                 ta.typedWords.push({'correct': 0, "word":val.trim()});
                 wordsService.setClass(ta.wordCount,'error');
                 //word done, go to next word (next array element)
@@ -92,13 +89,13 @@
                 wordsService.setClass(ta.wordCount,'mark');
                 $scope.compareText = '';
                 
-                scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime(), ta.typedWords ); 
+                scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime(), ta.typedWords, ta.numErrors); 
             }
             
             
           }
 
-        }else{
+        } else { 
           //the new word is not defined?
           //...most probably it means we finished the array
           alert("you won!");
@@ -122,9 +119,9 @@
       $scope.$on('timeUp', function(){
         ta.gameStart = false;
         ta.gameOver = true;
-        scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime()); 
+        scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime(), ta.typedWords, ta.numErrors); 
         toastr.info("Game Over - Time's up ");
-
+        $rootScope.$broadcast('finalScores');
         //$rootScope.$broadcast('gameOver');
 
       });
@@ -136,7 +133,7 @@
         ta.wordCount  = 0;
         $scope.error = 'no-error';
         $scope.compareText = '';
-        $scope.numErrors = 0;
+        ta.numErrors = 0;
 
         ta.typedWords = [];
         wordsService.removeClasses();
