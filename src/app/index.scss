@@ -26,12 +26,16 @@
     span.single-word{
       padding: 0 5px 0 5px;
       display: inline-block;
-      &.highlight {
-        color: #696352!important;
-      }
       &.mark {
         background-color: #cccccc;
         border-radius: 2px;
+      }
+      &.correct {
+        color: #696352!important;
+      }
+      &.error {
+        color: red!important;
+        
       }
       &.first{
         color: blue;

@@ -14,6 +14,7 @@
       timeElapsed: 0,
       wpm: 0,
       errors: 0,
+      words: [],
       correctWords : [],
       wrongWords: []
     };
@@ -26,19 +27,39 @@
     };
 
     //function: calculateScores
-    function calculateScores(username, gameStart, wordCount, timeElapsed, correctWord, wrongWord){
+    function calculateScores(username, gameStart, wordCount, timeElapsed, typedWords){
       //$log.info("calculating Scores");
       scores.username = username;
       scores.gameStart = gameStart;
       scores.wordCount = wordCount;
       scores.timeElapsed = timeElapsed;
       scores.wpm = wordCount / (timeElapsed / 60000)
-      if (correctWord) scores.correctWords.push(correctWord);
-      if (wrongWord) {
-        scores.wrongWords.push(wrongWord);
-        scores.errors++;
+      if (typedWords) {        
+        scores.correctWords = [];
+        scores.wrongWords = [];
+        for (var i=0; i < typedWords.length; i++){
+          if (typedWords[i]['correct'] == 0) {
+            scores.wrongWords.push(typedWords[i]['word']);  
+            scores.errors++;
+          }
+          else 
+            scores.correctWords.push(typedWords[i]['word']);
+
+        }
       }
-      //$log.log('scores: ', scores);
+      // if (correctWord){
+      //   scores.correctWords.push(correctWord);
+      //   scores.words.push(correctWord);
+      // }
+      // if (wrongWord) {
+      //   scores.wrongWords.push(wrongWord);
+      //   scores.words.push(wrongWord);
+      //   scores.errors++;
+      // }
+
+      //$log.log('correctWords: ', scores.correctWords);
+      //$log.log('wrongWords: ', scores.wrongWords);
+      //$log.log('typedWords: ', scores.words);
       calculateBadges();
     }
 

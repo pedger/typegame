@@ -30,7 +30,7 @@
       sc.sound.performance = 0.1;
       sc.sound.volume = 0.3; 
       
-      localStorage.removeItem("scores");
+      
       $scope.lastScores = angular.fromJson(localStorage.getItem("scores"));
       if ($scope.lastScores == null) {
         $scope.lastScores = [];
@@ -60,6 +60,11 @@
         localStorage.setItem("scores", angular.toJson($scope.lastScores));
         $scope.lastScores = angular.fromJson(localStorage.getItem("scores"));
       });
+
+      $scope.resetLocalStorageScores = function(){
+        localStorage.removeItem("scores");
+        $scope.lastScores = [];
+      };
 
     }
   }
