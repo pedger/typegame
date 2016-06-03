@@ -38,7 +38,7 @@
       
       wordsService.setClass(ta.wordCount,'mark');
       
-      //watch textared "ng-model"
+      //watch textarea "ng-model"
       $scope.$watch("compareText", function(val, oldval){
 
         var word2check = ta.words[ta.wordCount].w;
@@ -64,8 +64,8 @@
               }
             }
 
+            // WORD IS CORRECT
             if(word2check + " " === val){
-              // WORD IS CORRECT
               ta.typedWords.push({'correct': 1, "word":val.trim()});
               //if it matches, change class
               wordsService.setClass(ta.wordCount,'correct');
@@ -76,9 +76,8 @@
               $scope.compareText = '';
               scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime(), ta.typedWords, ta.numErrors); 
             }
+            // WORD IS WRONG
             else if (val.substr(val.length-1 ) == ' ') {
-              // WORD IS WRONG
-
               // only counts as wrong word if spacebar is pressed
               if (val.length > oldval.length && val[val.length-1] == " ")
                 ta.numErrors ++;
@@ -91,14 +90,11 @@
                 
                 scoresService.calculateScores("username", ta.gameStart, ta.wordCount, timerService.getTime(), ta.typedWords, ta.numErrors); 
             }
-            
-            
           }
-
         } else { 
           //the new word is not defined?
           //...most probably it means we finished the array
-          alert("you won!");
+          alert("no more words: you won!");
         }
 
       });
@@ -107,12 +103,13 @@
         // if key is backspace and textarea is empty
         if (event.target.value == '' && event.keyCode == 8){
           $scope.compareText = ta.typedWords.pop()['word'];
+          //prevent basckpace from deleting last character of compareText
+          event.preventDefault();
           $log.log('compareText:',$scope.compareText);
           wordsService.setClass(ta.wordCount,'');
           ta.wordCount--;
           wordsService.setClass(ta.wordCount,'mark');
-          //prevent basckpace from 
-          event.preventDefault();
+          
           
         }
       }

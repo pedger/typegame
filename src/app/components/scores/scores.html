@@ -1,49 +1,61 @@
 <div class="scores">
-	Achievements:
-	<div class="badge" ng-show="badges['firstkill']">1st kill</div>
-	<div class="badge" ng-show="badges['noErrors']">NO ERRORS</div>
-	<div class="badge" ng-show="badges['+40WPM']">40+ WPM</div>
+	
+	
+	<div class="col-xs-3">
+		<h4>Score</h4>
+		<table>
+			<tr>
+				<td>wpm</td>
+				<td>errors</td>
+				<td>correct</td>
+				<td>wrong</td>
+			</tr>
+			<tr >
+				<td>{{scores.wpm | number:0}}</td>
+				<td>{{scores.errors}}</td>
+				<td>{{scores.correctWords.length}}</td>
+				<td>{{scores.wrongWords.length}}</td>
+			</tr>
+		</table>
+		Achievements:
+		<div class="badges">
+			<div class="badge" ng-show="badges['firstkill']">1st kill</div>
+			<div class="badge" ng-show="badges['noErrors']">no errors</div>
+			<div class="badge" ng-show="badges['+40WPM']">40+ wpm</div>
+		</div>
 
-	<br/>
-	<br/>
-	
-	<table>
-		<tr>
-			<td>Time</td>
-			<td>wpm</td>
-			<td>errors</td>
-			<td>correct</td>
-			<td>wrong</td>
-		</tr>
-		<tr >
-			<td>{{scores.timeElapsed | date:"mm:ss:sss"}}</td>
-			<td>{{scores.wpm | number:0}}</td>
-			<td>{{scores.errors}}</td>
-			<td>{{scores.correctWords.length}}</td>
-			<td>{{scores.wrongWords.length}}</td>
-		</tr>
-	</table>
-	
-	<br/>
-	Last Scores:
-	<br/>
-	<button ng-click="resetLocalStorageScores()">Reset All Scores</button>
-	<table>
-		<tr>
-			<td>date</td>
-			<td>username</td>
-			<td>wpm</td>
-			<td>errors</td>
-			<td>correct</td>
-			<td>wrong</td>
-		</tr>
-		<tr ng-repeat="score in lastScores | orderBy: '[]': true">
-			<td>{{score.date | date:'MM/dd/yyyy @ h:mma'}}</td>
-			<td>{{score.username}}</td>
-			<td>{{score.wpm | number:0}}</td>
-			<td>{{score.errors}}</td>
-			<td>{{score.correctWords.length}}</td>
-			<td>{{score.wrongWords.length}}</td>
-		</tr>
-	</table>
+		<br/>
+		<br/>
+	</div>
+
+	<div class="col-xs-9">
+	<h4>Last Scores</h4>
+	<button ng-click="resetLocalStorageScores()" class="pull-xs-right">Reset All Scores</button>
+		<table>
+			<tr>
+				<td>date</td>
+				<td>username</td>
+				<td>wpm</td>
+				<td>errors</td>
+				<td>correct</td>
+				<td>wrong</td>
+				<td>Badges</td>
+			</tr>
+			<tr ng-repeat="score in lastScores | orderBy: '[]': true">
+				<td>{{score.date | date:'MM/dd/yyyy @ h:mma'}}</td>
+				<td>{{score.username}}</td>
+				<td>{{score.wpm | number:0}}</td>
+				<td>{{score.errors}}</td>
+				<td>{{score.correctWords.length}}</td>
+				<td>{{score.wrongWords.length}}</td>
+				<td>
+					<div class="badges">
+						<div class="badge" ng-show="score.badges['firstkill']">1st kill</div>
+						<div class="badge" ng-show="score.badges['noErrors']">no errors</div>
+						<div class="badge" ng-show="score.badges['+40WPM']">40+ wpm</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
