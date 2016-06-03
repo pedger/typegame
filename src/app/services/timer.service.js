@@ -9,7 +9,7 @@
   function timerService($timeout) {
 
     var period =10;
-    var initCounter = 4 *1000;
+    var initCounter = 60 *1000;
     var counter = initCounter;
     var time = 0;
     var timer;
@@ -43,12 +43,19 @@
       $timeout.cancel(timer);
     }
 
+    function endCountDown(){
+      // if we user counter = 0, countDown() turns it into 59:59:990
+      counter = period;
+
+    }
+
     this.initCounter    = initCounter;
     this.countDown      = countDown;
     this.getTime        = getTime;
     this.getTimeLeft    = getTimeLeft;
     this.reset          = reset;
     this.stopTimer      = stopTimer;
+    this.endCountDown   = endCountDown;
 
   }
 

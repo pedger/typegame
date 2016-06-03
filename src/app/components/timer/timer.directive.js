@@ -43,7 +43,9 @@
           if (newValue == 0) $rootScope.$broadcast("timeUp");
       });
 
-
+      $scope.endCountDown = function(){
+        timerService.endCountDown();
+      }
     }
   }
 

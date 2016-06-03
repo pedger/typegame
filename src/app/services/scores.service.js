@@ -72,6 +72,8 @@
           badges['noErrors'] = true;
       if (scores.wpm > 40 && !scores.gameStart)
           badges['+40WPM'] = true;
+      if(scores.wrongWords.length < scores.errors)
+        badges['correct'] = true;
     }
 
     function getScores(){

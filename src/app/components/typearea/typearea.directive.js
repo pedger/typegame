@@ -104,14 +104,16 @@
       });
 
       $scope.keydown = function(event){
-       
+        // if key is backspace and textarea is empty
         if (event.target.value == '' && event.keyCode == 8){
           $scope.compareText = ta.typedWords.pop()['word'];
           $log.log('compareText:',$scope.compareText);
           wordsService.setClass(ta.wordCount,'');
           ta.wordCount--;
           wordsService.setClass(ta.wordCount,'mark');
-          return false;
+          //prevent basckpace from 
+          event.preventDefault();
+          
         }
       }
 

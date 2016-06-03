@@ -10,7 +10,6 @@
 	<table>
 		<tr>
 			<td>Time</td>
-			<td>wordCount</td>
 			<td>wpm</td>
 			<td>errors</td>
 			<td>correct</td>
@@ -18,7 +17,6 @@
 		</tr>
 		<tr >
 			<td>{{scores.timeElapsed | date:"mm:ss:sss"}}</td>
-			<td>{{scores.wordCount}}</td>
 			<td>{{scores.wpm | number:0}}</td>
 			<td>{{scores.errors}}</td>
 			<td>{{scores.correctWords.length}}</td>
@@ -34,7 +32,6 @@
 		<tr>
 			<td>date</td>
 			<td>username</td>
-			<td>wordCount</td>
 			<td>wpm</td>
 			<td>errors</td>
 			<td>correct</td>
@@ -43,7 +40,6 @@
 		<tr ng-repeat="score in lastScores | orderBy: '[]': true">
 			<td>{{score.date | date:'MM/dd/yyyy @ h:mma'}}</td>
 			<td>{{score.username}}</td>
-			<td>{{score.wordCount}}</td>
 			<td>{{score.wpm | number:0}}</td>
 			<td>{{score.errors}}</td>
 			<td>{{score.correctWords.length}}</td>

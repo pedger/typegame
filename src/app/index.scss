@@ -31,7 +31,7 @@
         border-radius: 2px;
       }
       &.correct {
-        color: #696352!important;
+        color: #36802D!important;
       }
       &.error {
         color: red!important;
@@ -42,6 +42,16 @@
       }
     }
   }
+}
+
+.timer{
+  padding:0 25vw;
+  font-size: 3vmax;
+  color: #333;
+  background: -webkit-linear-gradient(#333, #eee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  button {font-size: 1vmax;}
 }
 
 
